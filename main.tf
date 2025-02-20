@@ -71,7 +71,17 @@ resource "azurerm_virtual_machine" "vm" {
     admin_password = "q1w2e3r4"
   }
 
+  #Definindo a forma de acesso.
   os_profile_linux_config {
-    disable_password_authentication = false
+    #No meu caso coloco true aqui pois a autenticação é por chave ssh
+    disable_password_authentication = true
+
+    #No painel do Azure criamos a chave .pem que é a privada.
+    #No main.tf precisamos apontar a chave pública .pub dessa privada .pem
+    #Comando para gerar a .pub dessa .pem: ssh-keygen -y -f sua-chave.pem > sua-chave.pub
+    ssh_keys {
+      path     = "/home/luan/.ssh/autorized_keys" #Cria esse caminho dentro da instância onde ficará a chave pública.
+      key_data = file("~/azure/acesso-azure.pub") #Caminho para a chave pública na máquina local.
+    }
   }
 }
