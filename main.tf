@@ -19,7 +19,7 @@ provider "azurerm" {
 
 resource "azurerm_resource_group" "rg" {
   name     = "Projeto-Devops-MinIO-RG"
-  location = "East US"
+  location = "Brazil South"
 }
 
 resource "azurerm_virtual_network" "vnet" {
