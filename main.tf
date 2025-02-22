@@ -80,8 +80,8 @@ resource "azurerm_virtual_machine" "vm" {
     #No main.tf precisamos apontar a chave pública .pub dessa privada .pem
     #Comando para gerar a .pub dessa .pem: ssh-keygen -y -f sua-chave.pem > sua-chave.pub
     ssh_keys {
-      path     = "/home/luan/.ssh/autorized_keys" #Cria esse caminho dentro da instância onde ficará a chave pública.
-      key_data = file("~/azure/acesso-azure.pub") #Caminho para a chave pública na máquina local.
+      path     = "/home/luan/.ssh/authorized_keys" #Cria esse caminho dentro da instância onde ficará a chave pública.
+      key_data = file("~/azure/acesso-azure.pub")  #Caminho para a chave pública na máquina local.
     }
   }
 }
